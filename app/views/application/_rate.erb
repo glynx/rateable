@@ -1,0 +1,7 @@
+<% url ||= [:rate, rateable] %>
+<% stars ||= 5 %>
+<div class="rating" style="width: <%= stars*32 %>px;">
+  <% stars.times do |i| %>
+    <a class="rate" href="<%= url %>" data-stars="<%=i+1%>" data-url="<%= url %>" style="width:<%=(i+1)*32%>px; z-index: <%= stars - i%>;"></a>
+  <% end %>
+</div>
