@@ -12,4 +12,12 @@ class RateableGenerator < Rails::Generators::Base
      copy_file "rateable.css", "public/stylesheets/rateable.css"
      migration_template "migration.rb", "db/migrate", :migration_file_name => "rateable_migration"
   end
+
+  def self.next_migration_number(dirname)
+    if ActiveRecord::Base.timestamped_migrations
+      Time.now.utc.strftime("%Y%m%d%H%M%S")
+    else
+      "%.3d" % (current_migration_number(dirname) + 1)
+    end
+  end
 end
