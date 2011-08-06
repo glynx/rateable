@@ -10,7 +10,7 @@ class RateableGenerator < Rails::Generators::Base
      copy_file "star_filled.png", "public/images/rateable/star_filled.png"
      copy_file "rateable.js", "public/javascripts/rateable.js"
      copy_file "rateable.css", "public/stylesheets/rateable.css"
-     migration_template "migration.rb", "db/migrate", :migration_file_name => "rateable_migration"
+     migration_template "migration.rb", "db/migrate/rateable_migration"
   end
 
   def self.next_migration_number(dirname)
