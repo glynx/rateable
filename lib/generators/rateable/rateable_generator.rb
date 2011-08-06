@@ -4,12 +4,12 @@ class RateableGenerator < Rails::Generators::Base
   include Rails::Generators::Migration
 
   def copy_files
-     create_directory img_path
+     directory img_path
      copy_file "star_unfilled.png", File.join(img_path, "star_unfilled.png")
      copy_file "star_filled.png", File.join(img_path, "star_filled.png")
-     create_directory js_path
+     directory js_path
      copy_file "rateable.js", File.join(js_path, "rateable.js")
-     create_directory stylesheets_path
+     directory stylesheets_path
      copy_file "rateable.css", File.join(stylesheets, "rateable.css")
      migration_template "migration.rb", migrations_path, :migration_file_name => "rateable_migration"
   end
