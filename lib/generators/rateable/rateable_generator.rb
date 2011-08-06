@@ -1,4 +1,8 @@
-class RateableGenerator < Rails::Generator::Base
+require 'rails/generators/migration'
+
+class RateableGenerator < Rails::Generators::Base
+  include Rails::Generators::Migration
+
   def manifest
     record do |m|
         m.directory img_path
