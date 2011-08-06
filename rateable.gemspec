@@ -12,7 +12,8 @@ Gem::Specification.new do |s|
   s.summary     = %q{Add a stars rating to your models}
   s.description = %q{A way for simply adding an ajax rating to any of your models}
 
-  s.add_runtime_dependency 'rails'
+  s.add_runtime_dependency 'rails', ">= 3"
+  s.add_runtime_dependency 'active_record', ">= 3"
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
