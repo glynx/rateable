@@ -3,6 +3,8 @@ require 'rails/generators/migration'
 class RateableGenerator < Rails::Generators::Base
   include Rails::Generators::Migration
 
+  source_root File.expand_path('../templates', __FILE__)
+
   def copy_files
      copy_file "star_unfilled.png", "public/images/rateable/star_unfilled.png"
      copy_file "star_filled.png", "public/images/rateable/star_filled.png"
