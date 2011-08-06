@@ -1,4 +1,4 @@
-class RateableGenerator < Rails::Generator::NamedBase
+class RateableGenerator < Rails::Generator::Base
   def manifest
     record do |m|
         m.directory img_path
