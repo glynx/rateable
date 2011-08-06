@@ -1,4 +1,4 @@
-=== Rateable
+= Rateable
 
 This is my own simple way to add ajax voting to a rails application.
 
@@ -12,25 +12,25 @@ Then install the Gem
   
   bundle install
 
-= Generating Files
+=== Generating Files
 
 After installing you should generate the needed files
 
   rails generate rateable
 
-= Migrating 
+=== Migrating 
 
 Then apply the migration to your Database
   
   rake db:migrate
 
-= Includes
+=== Includes
 
 Add the "rateable.css" and "rateable.js" to the includes in your layout file
 
 == Usage
 
-= Model 
+=== Model 
 
 Add to the user model that should be able to rate things:
 
@@ -44,7 +44,7 @@ Add to the model that should be rateable
     is_rateable
   end
 
-= Controller
+=== Controller
 
 Add a rate action to the controller of the model that should be rateable, it should look like this:
 
@@ -58,7 +58,7 @@ Add a rate action to the controller of the model that should be rateable, it sho
       end
     end
 
-= Routes
+=== Routes
 
 Add a post action called "rate" to the resource in your "config/routes.rb"
   
@@ -68,7 +68,7 @@ Add a post action called "rate" to the resource in your "config/routes.rb"
     end
   end
 
-= Views
+=== Views
 
 In your Views you can add the rating stars by adding:
 
