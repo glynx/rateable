@@ -1,7 +1,7 @@
 .rating {
   position: relative;
   height: 32px;
-  background: url(/images/star_unfilled.png) top left repeat-x;
+  background: url(/images/rateable/star_unfilled.png) top left repeat-x;
 }
 
 .rating a {
@@ -18,5 +18,5 @@
    
 
 .rating .rate:hover {
-    background: url(/images/star_filled.png) bottom left repeat-x;
+    background: url(/images/rateable/star_filled.png) bottom left repeat-x;
 }
