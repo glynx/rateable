@@ -80,4 +80,4 @@ You can also supply the url for the rate action manually, for example when using
 
 If there is no current_user method you can also supply your current user like this:
 
-  <%= rating_for @modle, :user => @user %>
+  <%= rating_for @model, :user => @user %>
