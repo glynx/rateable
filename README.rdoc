@@ -52,7 +52,7 @@ Add a rate action to the controller of the model that should be rateable, it sho
       # Check if the current user has already voted
       if current_user and current_user.ratings.where(:rateable => @model).empty?
         @model.rate(current_user, params[:stars])
-        render :partial => "rating", :locals => {:rating => @model.ratings.average("stars").to_i}                                                                    
+        render :partial => "rateable/rating", :locals => {:rating => @model.ratings.average("stars").to_i}                                                                    
       else
         render :text => "You have already voted for this item!", :status => 500                                                                                                                           
       end
