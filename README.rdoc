@@ -1,0 +1,83 @@
+=== Rateable
+
+This is my own simple way to add ajax voting to a rails application.
+
+== Installation
+
+Add the Gem to your Gemfile
+ 
+  gem "glynx_rateable"
+
+Then install the Gem
+  
+  bundle install
+
+= Generating Files
+
+After installing you should generate the needed files
+
+  rails generate rateable
+
+= Migrating 
+
+Then apply the migration to your Database
+  
+  rake db:migrate
+
+= Includes
+
+Add the "rateable.css" and "rateable.js" to the includes in your layout file
+
+== Usage
+
+= Model 
+
+Add to the user model that should be able to rate things:
+
+  class User < ActiveRecord::Base
+    is_rater
+  end
+
+Add to the model that should be rateable
+  
+  class Model < ActiveRecord::Base
+    is_rateable
+  end
+
+= Controller
+
+Add a rate action to the controller of the model that should be rateable, it should look like this:
+
+    def rate
+      # Check if the current user has already voted
+      if current_user and current_user.ratings.where(:rateable => @model).empty?
+        @model.rate(current_user, params[:stars])
+        render :partial => "rating", :locals => {:rating => @model.ratings.average("stars").to_i}                                                                    
+      else
+        render :text => "You have already voted for this item!", :status => 500                                                                                                                           
+      end
+    end
+
+= Routes
+
+Add a post action called "rate" to the resource in your "config/routes.rb"
+  
+  resource :models do
+    member do 
+      post :rate
+    end
+  end
+
+= Views
+
+In your Views you can add the rating stars by adding:
+
+  <%= rating_for @model %>
+
+You can also supply the url for the rate action manually, for example when using nested resources
+
+  <%= rating_for @model, :url => url_for([:rate, @category, @model])  %>
+
+If there is no current_user method you can also supply your current user like this:
+
+  <%= rating_for @modle, :user => @user %>

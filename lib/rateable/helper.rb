@@ -1,7 +1,8 @@
 module Rateable
   module Helper
-    def rating_for(rateable, args = {}) 
-      if @current_user and @current_user.ratings.where(:rateable => rateable).empty?
+    def rating_for(rateable, args = {})
+      user = args[:user] || try(:current_user)
+      if user and user.ratings.where(:rateable => rateable).empty?
         render :partial => "rateable/rate", :locals => {:url => args[:url] ? args[:url] : url_for(rateable), :stars => args[:stars]}
       else
         stars_average = rateable.ratings.average("stars")
