@@ -1,7 +1,8 @@
 module Rateable
   module Helper
     def rating_for(rateable, args = {})
-      user = args[:user] || try(:current_user)
+      raise "The given model of class #{rateable.class} is not rateable" if rateable.nil? or not (rateable.respond_to?(:is_rateable?) and rateable.is_rateable?)
+      user = args[:user] || begin try(:current_user) rescue nil end
       if user and user.ratings.where(:rateable => rateable).empty?
         render :partial => "rateable/rate", :locals => {:url => args[:url] ? args[:url] : url_for([:rate, rateable]), :stars => args[:stars]}
       else

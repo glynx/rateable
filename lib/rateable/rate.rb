@@ -13,8 +13,4 @@ module Rateable
       end
     end
   end
-
-  def max_stars
-    rateable.max_stars
-  end
 end

@@ -1,0 +1,22 @@
+.rating {
+  position: relative;
+  height: 32px;
+  background: url(/images/rateable/star_unfilled.png) top left repeat-x;
+}
+
+.rating a {
+    position: absolute;
+    height: 32px;
+    text-decoration: none;
+}
+
+.rating img {
+    position: absolute;
+    width: 32px;
+    text-decoration: none;
+}
+   
+
+.rating .rate:hover {
+    background: url(/images/rateable/star_filled.png) bottom left repeat-x;
+}

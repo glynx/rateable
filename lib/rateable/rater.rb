@@ -21,7 +21,7 @@ module Rateable
       end
 
       def rate(obj,stars)
-        if obj.is_rateable?
+        if begin obj.is_rateable? rescue false end
           obj.rate(self,stars)
         else
           false

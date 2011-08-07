@@ -6,3 +6,4 @@ gemspec
 gem "meta_where"
 gem "launchy"
 gem "database_cleaner"
+gem "rcov"

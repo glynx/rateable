@@ -8,3 +8,9 @@ RSpec::Core::RakeTask.new(:spec) do |t|
   t.rspec_opts = ['--options', "spec/spec.opts"]
   t.pattern = "spec/**/*_spec.rb"
 end
+
+RSpec::Core::RakeTask.new(:spec_rcov) do |t|
+  t.rspec_opts = ['--options', "spec/spec.opts"]
+  t.pattern = "spec/**/*_spec.rb"
+  t.rcov = true
+end

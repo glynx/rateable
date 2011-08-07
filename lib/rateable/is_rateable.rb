@@ -6,6 +6,7 @@ module Rateable
 
     module ClassMethods
       def is_rateable(args = {})
+        raise ":stars must be an integer >= 1" if args[:stars] and not (args[:stars].is_a?(Integer) and args[:stars] >= 1)
         @max_stars = args[:stars] || 5
         has_many :ratings, :as => :rateable, :class_name => "Rateable::Rate", :dependent => :destroy
         include Rateable::IsRateable::InstanceMethods
@@ -32,9 +33,13 @@ module Rateable
 
       # include instance methods that are needed
       def rate(user,stars)
+        raise "#{user.inspect} is not a rater" unless user.respond_to?(:is_rater?) and user.is_rater?
         rating = Rate.where(:rateable => self, :rater => user).first
-        rating = Rate.create(:rateable => self, :rater => user) unless rating
-        rating.stars = stars
+        unless rating 
+          rating = Rate.create(:rateable => self, :rater => user, :stars => stars) 
+        else
+          rating.stars = stars
+        end
         rating.save
       end
     end
