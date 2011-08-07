@@ -5,7 +5,12 @@ module Rateable
 
     validates_presence_of :rateable
     validates_presence_of :rater
-    validates_inclusion_of :stars, :in => Proc.new{|rate| (1..rate.max_stars).to_a}
+
+    def validate 
+      unless (1..rateable.max_stars).include? stars
+        errors.add :stars, "must be within 1 to #{rateable.max_stars}"
+      end
+    end
   end
 
   def max_stars
