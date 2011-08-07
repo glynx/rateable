@@ -62,7 +62,7 @@ Add a rate action to the controller of the model that should be rateable, it sho
 
 Add a post action called "rate" to the resource in your "config/routes.rb"
   
-  resource :models do
+  resources :models do
     member do 
       post :rate
     end

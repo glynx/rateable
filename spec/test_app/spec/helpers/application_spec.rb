@@ -37,5 +37,12 @@ describe ApplicationHelper do
       rating_for @picture, :user => Factory(:user)
       assert_template :partial => "rateable/_rate"
     end
+
+    it "should use given url if user allowed to rate" do
+      url = "test123"
+      rating_for @picture, :url => url
+      rendered.should include(url)
+    end
+
   end
 end
