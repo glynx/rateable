@@ -5,7 +5,8 @@ module Rateable
     end
 
     module ClassMethods
-      def is_rateable
+      def is_rateable(args = {})
+        @max_stars = args[:stars] || 5
         has_many :ratings, :as => :rateable, :class_name => "Rateable::Rate", :dependent => :destroy
         include Rateable::IsRateable::InstanceMethods
       end
@@ -13,11 +14,20 @@ module Rateable
       def is_rateable?
         true
       end
+      
+      def max_stars
+        @max_stars
+      end
+
     end
 
     module InstanceMethods
       def is_rateable?
         true
+      end
+
+      def max_stars
+        self.class.max_stars
       end
 
       # include instance methods that are needed
